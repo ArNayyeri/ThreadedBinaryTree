@@ -3,7 +3,7 @@ package ac.um.ds;
 import java.util.Iterator;
 
 public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
-    private int mSize;
+    protected int mSize;
     public IBTN mPreorderPreBegin;
     public IBTN mPreorderEnd;
     public IBTN mPreorderReversePreBegin;
@@ -64,12 +64,11 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
     }
 
     public void insertRootNode(T data) {
-        if (isEmpty()) {
-            IBTN root = createInternalBinaryTreeNodeInstance();
-            root.mData = data;
-            mRevPreorderEnd.mLeftChild = root;
-            ++mSize;
-        }
+        //try catch
+        IBTN root = createInternalBinaryTreeNodeInstance();
+        root.mData = data;
+        mRevPreorderEnd.mLeftChild = root;
+        ++mSize;
     }
 
     public BinaryTreeNode<T, IBTN> getRootNode() {
@@ -81,6 +80,7 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
         IBTN node = createInternalBinaryTreeNodeInstance();
         node.mData = data;
         parentNode.mActualNode.mLeftChild = node;
+        ++mSize;
     }
 
     public void insertRightChild(BinaryTreeNode<T, IBTN> parentNode, T data) {
@@ -88,6 +88,7 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
         IBTN node = createInternalBinaryTreeNodeInstance();
         node.mData = data;
         parentNode.mActualNode.mRightChild = node;
+        ++mSize;
     }
 
     public void deleteLeftChild(BinaryTreeNode<T, IBTN> parent)  // Only leaf nodes and nodes with degree 1 can be deleted. If a degree 1 node is deleted, it is replaced by its subtree.
