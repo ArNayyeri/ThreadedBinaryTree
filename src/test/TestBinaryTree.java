@@ -1,47 +1,44 @@
 package test;
 
-import ac.um.ds.BinaryTree;
-import ac.um.ds.BinaryTreeNode;
-import ac.um.ds.InternalBinaryTreeNode;
+import ac.um.ds.*;
 
 import java.lang.String;
 import java.util.Iterator;
 
 public class TestBinaryTree {
 
-    public static void main(String[] args)
-    {
-        BinaryTree<Integer, InternalBinaryTreeNode<Integer>>	bt = new BinaryTree<>();
+    public static void main(String[] args) {
+        ThreadedBinaryTree<Integer, InternalThreadedBinaryTreeNode<Integer>> bt = new ThreadedBinaryTree<>();
         bt.insertRootNode(1);
 
         BinaryTreeNode btna = bt.getRootNode();
         bt.insertLeftChild(btna, 2);
         bt.insertRightChild(btna, 3);
 
-        BinaryTreeNode	btnb = btna.getLeftChild();
-        BinaryTreeNode	 btnc = btna.getRightChild();
+        BinaryTreeNode btnb = btna.getLeftChild();
+        BinaryTreeNode btnc = btna.getRightChild();
         bt.insertLeftChild(btnb, 4);
         bt.insertRightChild(btnb, 5);
         bt.insertLeftChild(btnc, 6);
 
-        BinaryTreeNode	btnd = btnb.getLeftChild();
-        BinaryTreeNode	btne = btnb.getRightChild();
-        BinaryTreeNode	 btnf = btnc.getLeftChild();
+        BinaryTreeNode btnd = btnb.getLeftChild();
+        BinaryTreeNode btne = btnb.getRightChild();
+        BinaryTreeNode btnf = btnc.getLeftChild();
         bt.insertLeftChild(btnd, 7);
         bt.insertLeftChild(btne, 8);
         bt.insertRightChild(btnf, 9);
 
-        BinaryTreeNode	btng = btnd.getLeftChild();
-        BinaryTreeNode	btnh = btne.getLeftChild();
-        BinaryTreeNode	btni = btnf.getRightChild();
+        BinaryTreeNode btng = btnd.getLeftChild();
+        BinaryTreeNode btnh = btne.getLeftChild();
+        BinaryTreeNode btni = btnf.getRightChild();
 
         bt.insertRightChild(btng, 10);
         bt.insertRightChild(btnh, 11);
         bt.insertRightChild(btni, 12);
 
-        BinaryTreeNode	btnj = btng.getRightChild();
-        BinaryTreeNode	btnk = btnh.getRightChild();
-        BinaryTreeNode	btnl = btni.getRightChild();
+        BinaryTreeNode btnj = btng.getRightChild();
+        BinaryTreeNode btnk = btnh.getRightChild();
+        BinaryTreeNode btnl = btni.getRightChild();
 
         bt.insertLeftChild(btnj, 13);
         bt.insertLeftChild(btnk, 14);

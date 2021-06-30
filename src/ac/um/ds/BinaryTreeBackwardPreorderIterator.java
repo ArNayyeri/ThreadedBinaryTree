@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class BinaryTreeBackwardPreorderIterator<T, IBTN extends InternalBinaryTreeNode<T>> implements Iterator<T> {
-    private IBTN mCurrentNode;
-    private Stack<IBTN> mParentsStack;
-    private BinaryTree<T, IBTN> mBinaryTree;
+    protected IBTN mCurrentNode;
+    protected Stack<IBTN> mParentsStack;
+    protected BinaryTree<T, IBTN> mBinaryTree;
 
     //constructors:
     public BinaryTreeBackwardPreorderIterator() {

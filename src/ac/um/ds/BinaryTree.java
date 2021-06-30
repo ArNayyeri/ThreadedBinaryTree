@@ -21,7 +21,6 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
 
 
     public BinaryTree() {
-        //Write your code here
         mPreorderPreBegin = createInternalBinaryTreeNodeInstance();
         mPreorderEnd = createInternalBinaryTreeNodeInstance();
         mPreorderReversePreBegin = createInternalBinaryTreeNodeInstance();
@@ -35,12 +34,7 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
         mRevPostorderEnd = createInternalBinaryTreeNodeInstance();
         mInorderPreBegin.mLeftChild = mRevPostorderEnd;
         mInorderPreBegin.mRightChild = mInorderEnd;
-        /*mRevPostorderEnd.mLeftChild = null;
-        mRevPostorderEnd.mRightChild = null;*/
         mInorderEnd.mRightChild = mPreorderEnd;
-        /*mInorderEnd.mLeftChild = null;
-        mPreorderEnd.mLeftChild = null;
-        mPreorderEnd.mRightChild = null;*/
         mRevPreorderEnd = mInorderEnd;
         mRevInorderEnd = mInorderPreBegin;
         mInorderReversePreBegin = mInorderEnd;

@@ -6,8 +6,6 @@ public class InternalThreadedBinaryTreeNode<T> extends InternalBinaryTreeNode<T>
 
     public InternalThreadedBinaryTreeNode() {
         super();
-        leftThread = true;
-        rightThread = true;
     }
 
     public boolean isLeftThread() {
