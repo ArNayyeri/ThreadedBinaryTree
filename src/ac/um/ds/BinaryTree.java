@@ -39,10 +39,10 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
         mRevInorderEnd = mInorderPreBegin;
         mInorderReversePreBegin = mInorderEnd;
         mPostorderEnd = mPreorderEnd;
+        mPostorderReversePreBegin = mPostorderEnd;
         mPreorderPreBegin = mRevPreorderEnd;
         mPreorderReversePreBegin = mPreorderEnd;
         mPostorderPreBegin = mRevPostorderEnd;
-        mPostorderReversePreBegin = mPostorderEnd;
     }
 
     protected IBTN createInternalBinaryTreeNodeInstance() {
@@ -58,11 +58,14 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
     }
 
     public void insertRootNode(T data) {
-        //try catch
-        IBTN root = createInternalBinaryTreeNodeInstance();
-        root.mData = data;
-        mRevPreorderEnd.mLeftChild = root;
-        ++mSize;
+        if (mRevPreorderEnd.mLeftChild != null)
+            throw new RuntimeException("root is exist!");
+        else {
+            IBTN root = createInternalBinaryTreeNodeInstance();
+            root.mData = data;
+            mRevPreorderEnd.mLeftChild = root;
+            ++mSize;
+        }
     }
 
     public BinaryTreeNode<T, IBTN> getRootNode() {
@@ -70,19 +73,25 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
     }
 
     public void insertLeftChild(BinaryTreeNode<T, IBTN> parentNode, T data) {
-        //try catch
-        IBTN node = createInternalBinaryTreeNodeInstance();
-        node.mData = data;
-        parentNode.mActualNode.mLeftChild = node;
-        ++mSize;
+        if (parentNode.mActualNode.mLeftChild != null)
+            throw new RuntimeException("left child is exist!");
+        else {
+            IBTN node = createInternalBinaryTreeNodeInstance();
+            node.mData = data;
+            parentNode.mActualNode.mLeftChild = node;
+            ++mSize;
+        }
     }
 
     public void insertRightChild(BinaryTreeNode<T, IBTN> parentNode, T data) {
-        //try catch
-        IBTN node = createInternalBinaryTreeNodeInstance();
-        node.mData = data;
-        parentNode.mActualNode.mRightChild = node;
-        ++mSize;
+        if (parentNode.mActualNode.mRightChild != null) {
+            throw new RuntimeException("right child is exist!");
+        } else {
+            IBTN node = createInternalBinaryTreeNodeInstance();
+            node.mData = data;
+            parentNode.mActualNode.mRightChild = node;
+            ++mSize;
+        }
     }
 
     public void deleteLeftChild(BinaryTreeNode<T, IBTN> parent)  // Only leaf nodes and nodes with degree 1 can be deleted. If a degree 1 node is deleted, it is replaced by its subtree.
@@ -102,12 +111,16 @@ public class BinaryTree<T, IBTN extends InternalBinaryTreeNode<T>> {
 
     protected void deleteNode(IBTN parentNode, IBTN theNode)  // Only leaf nodes and nodes with degree 1 can be deleted. If a degree 1 node is deleted, it is replaced by its subtree.
     {
-        //try catch
-        --mSize;
-        if (parentNode.mRightChild == theNode)
+        if (theNode.mRightChild != null || theNode.mLeftChild != null)
+            throw new RuntimeException("node isn't leaf!");
+        if (parentNode.mRightChild == theNode) {
+            --mSize;
             parentNode.mRightChild = null;
-        else if (parentNode.mLeftChild == theNode)
+        } else if (parentNode.mLeftChild == theNode) {
+            --mSize;
             parentNode.mLeftChild = null;
+        } else
+            throw new RuntimeException("node isn't exist!");
     }
 
     public Iterator<T> forwardInorderIterator() {

@@ -28,32 +28,30 @@ public class BinaryTreeBackwardPostorderIterator<T, IBTN extends InternalBinaryT
     @Override
     public T next() {
         if (mCurrentNode == mBinaryTree.mPostorderReversePreBegin) {
-            Stack<IBTN> temp = new Stack<IBTN>();
+            Stack<IBTN> stack = new Stack<IBTN>();
             do {
                 if (mCurrentNode.mRightChild != null) {
                     mCurrentNode = (IBTN) mCurrentNode.mRightChild;
                     mParentsStack.push(mCurrentNode);
-                    temp.push(mCurrentNode);
+                    stack.push(mCurrentNode);
                 } else if (mCurrentNode.mLeftChild != null) {
                     mCurrentNode = (IBTN) mCurrentNode.mLeftChild;
                     mParentsStack.pop();
                     mParentsStack.push(mCurrentNode);
-                    temp.push(mCurrentNode);
+                    stack.push(mCurrentNode);
                 } else {
-                    while (mParentsStack.peek().mLeftChild == null || mParentsStack.peek().mLeftChild == mCurrentNode) {
+                    while (mParentsStack.peek().mLeftChild == null || mParentsStack.peek().mLeftChild == mCurrentNode)
                         mCurrentNode = mParentsStack.pop();
-                    }
                     mCurrentNode = (IBTN) mParentsStack.pop().mLeftChild;
                     mParentsStack.push(mCurrentNode);
-                    temp.push(mCurrentNode);
+                    stack.push(mCurrentNode);
                 }
             } while (mCurrentNode != mBinaryTree.mRevPostorderEnd);
-            temp.pop();
+            stack.pop();
             mParentsStack.pop();
             mParentsStack.pop();
-            while (!temp.empty()) {
-                mParentsStack.push(temp.pop());
-            }
+            while (!stack.empty())
+                mParentsStack.push(stack.pop());
             mCurrentNode = mParentsStack.peek();
         }
         mCurrentNode = mParentsStack.peek();

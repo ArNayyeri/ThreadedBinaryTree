@@ -23,9 +23,8 @@ public class BinaryTreeBackwardInorderIterator<T, IBTN extends InternalBinaryTre
     //overloading operators:
     @Override
     public T next() {
-        if (mCurrentNode == mBinaryTree.mInorderReversePreBegin) {
+        if (mCurrentNode == mBinaryTree.mInorderReversePreBegin)
             mCurrentNode = mBinaryTree.getRootNode().mActualNode;
-        }
         while (mCurrentNode != null) {
             mParentsStack.push(mCurrentNode);
             mCurrentNode = (IBTN) mCurrentNode.getRightChild();

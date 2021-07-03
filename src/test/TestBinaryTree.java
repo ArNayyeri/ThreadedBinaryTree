@@ -105,11 +105,14 @@ public class TestBinaryTree {
         System.out.println("Your answer:");
         bt.draw();
 
-        bt.deleteLeftChild(btnc);
-        bt.deleteRightChild(btni);
-        bt.deleteRightChild(btnb);
+        //add and delete node
 
-        System.out.println("Your answer:");
+        bt.insertRightChild(btnc, 17);
+        System.out.println("add 17:");
+        bt.draw();
+
+        bt.deleteRightChild(btnc);
+        System.out.println("remove 17");
         bt.draw();
     }
 }
